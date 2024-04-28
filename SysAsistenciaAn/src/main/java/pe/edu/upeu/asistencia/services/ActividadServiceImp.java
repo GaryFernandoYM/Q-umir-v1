@@ -32,10 +32,10 @@ public class ActividadServiceImp implements ActividadService{
     private ActividadRepository actividadRepo;
 
 
-    
+
     @Override
     public Actividad save(Actividad activiad) {
-        
+
         try {
             return actividadRepo.save(activiad);
         } catch (Exception e) {
@@ -61,13 +61,13 @@ public class ActividadServiceImp implements ActividadService{
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", true);
 
-        return response;        
+        return response;
     }
 
     @Override
     public Actividad getActividadById(Long id) {
         Actividad findActividad = actividadRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Activiad not exist with id :" + id));
-        return findActividad;        
+        return findActividad;
     }
 
     @Override
@@ -75,9 +75,9 @@ public class ActividadServiceImp implements ActividadService{
         Actividad actividadx = actividadRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Periodo not exist with id :" + id));
         actividadx.setFecha(activiad.getFecha());
-        actividadx.setHorai(activiad.getHorai());        
+        actividadx.setHorai(activiad.getHorai());
         actividadx.setEstado(activiad.getEstado());
-        return actividadRepo.save(actividadx);        
+        return actividadRepo.save(actividadx);
     }
-    
+
 }

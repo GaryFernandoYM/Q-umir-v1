@@ -6,6 +6,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import pe.edu.upeu.asistenciaupeujcr.repository.ActividadRepository
 import pe.edu.upeu.asistenciaupeujcr.repository.ActividadRepositoryImp
+import pe.edu.upeu.asistenciaupeujcr.repository.EventoAmbientalRepository
+import pe.edu.upeu.asistenciaupeujcr.repository.EventoAmbientalRepositoryImp
 import pe.edu.upeu.asistenciaupeujcr.repository.MaterialesxRepository
 import pe.edu.upeu.asistenciaupeujcr.repository.MaterialesxRepositoryImp
 import pe.edu.upeu.asistenciaupeujcr.repository.UsuarioRepository
@@ -25,4 +27,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun materialesxRepository(actRepos: MaterialesxRepositoryImp): MaterialesxRepository
+    @Binds
+    @Singleton
+    abstract fun eventoambientalRepository(facRepos:EventoAmbientalRepositoryImp):EventoAmbientalRepository
+
 }

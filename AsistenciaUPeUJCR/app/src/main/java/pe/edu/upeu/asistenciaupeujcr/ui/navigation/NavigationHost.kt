@@ -16,6 +16,8 @@ import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.Pantalla4
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.Pantalla5
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.actividad.ActividadForm
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.actividad.ActividadUI
+import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.eventoambiental.EventoAmbientalForm
+import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.eventoambiental.EventoAmbientalUI
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.login.LoginScreen
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.materialesx.MaterialesxForm
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.materialesx.MaterialesxUI
@@ -83,6 +85,21 @@ fun NavigationHost(
             requireNotNull(matId)
             MaterialesxForm(text = matId, darkMode = darkMode, navController=navController )
         }
+//eventoAmbiental
+        composable(Destinations.EventoAmbientalUI.route){
+            EventoAmbientalUI(navegarEditarEvent = { newText->navController.navigate(Destinations.EventoAmbientalForm.passId(newText))}, navController =navController )
+        }
+
+        composable(Destinations.EventoAmbientalForm.route, arguments = listOf(navArgument("evtId"){
+            defaultValue="evtId"
+        })){
+                navBackStackEntry -> var evtId=navBackStackEntry.arguments?.getString("evtId")
+            requireNotNull(evtId)
+            EventoAmbientalForm(text = evtId, darkMode = darkMode, navController =navController )
+        }
+
+
+
 
 
         composable(Destinations.PantallaQR.route) { BarcodeScanningScreen(navController = navController) }

@@ -1,4 +1,4 @@
-package pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.actividad
+package pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.eventoambiental
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -48,36 +47,38 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberImagePainter
 import com.google.gson.Gson
-import pe.edu.upeu.asistenciaupeujcr.modelo.Actividad
-import pe.edu.upeu.asistenciaupeujcr.ui.navigation.Destinations
-import pe.edu.upeu.asistenciaupeujcr.ui.presentation.components.ConfirmDialog
-import pe.edu.upeu.asistenciaupeujcr.ui.presentation.components.Spacer
-import pe.edu.upeu.asistenciaupeujcr.utils.TokenUtils
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import pe.edu.upeu.asistenciaupeujcr.R
+import pe.edu.upeu.asistenciaupeujcr.modelo.Actividad
+import pe.edu.upeu.asistenciaupeujcr.modelo.EventoAmbiental
+import pe.edu.upeu.asistenciaupeujcr.ui.navigation.Destinations
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.components.BottomNavigationBar
+import pe.edu.upeu.asistenciaupeujcr.ui.presentation.components.ConfirmDialog
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.components.FabItem
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.components.LoadingCard
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.components.MultiFloatingActionButton
+import pe.edu.upeu.asistenciaupeujcr.ui.presentation.components.Spacer
+import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.actividad.ActividadViewModel
+import pe.edu.upeu.asistenciaupeujcr.utils.TokenUtils
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 @Composable
-fun ActividadUI (navegarEditarAct: (String) -> Unit, viewModel:
-ActividadViewModel= hiltViewModel(), navController: NavHostController
+fun EventoAmbientalUI (navegarEditarEvent: (String) -> Unit, viewModel:
+EventoAmbientalViewModel = hiltViewModel(), navController: NavHostController
 ){
-    val actis by viewModel.activ.observeAsState(arrayListOf())
+    val actis by viewModel.eventoAmbiental.observeAsState(arrayListOf())
     val isLoading by viewModel.isLoading.observeAsState(false)
     Log.i("VERX", ""+actis!!.size )
 
     MyApp(navController, onAddClick = {
         //viewModel.addUser()
-        navegarEditarAct((0).toString())
+        navegarEditarEvent((0).toString())
     }, onDeleteClick = {
-        viewModel.deleteActividad(it)
+        viewModel.deleteEventoAmbiental(it)
     }, actis, isLoading,
         onEditClick = {
             val jsonString = Gson().toJson(it)
-            navegarEditarAct(jsonString)
+            navegarEditarEvent(jsonString)
         }
     )
 }
@@ -88,25 +89,25 @@ val formatoFecha: DateTimeFormatter? = DateTimeFormatter.ofPattern("dd-MM-yyyy")
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MyApp( navController: NavHostController,
-    onAddClick: (() -> Unit)? = null,
-    onDeleteClick: ((toDelete: Actividad) -> Unit)? = null,
-    actividades: List<Actividad>,
-    isLoading: Boolean,
-    onEditClick: ((toPersona: Actividad) -> Unit)? = null,
+fun MyApp(navController: NavHostController,
+          onAddClick: (() -> Unit)? = null,
+          onDeleteClick: ((toDelete: EventoAmbiental) -> Unit)? = null,
+          eventoambientals: List<EventoAmbiental>,
+          isLoading: Boolean,
+          onEditClick: ((toPersona: EventoAmbiental) -> Unit)? = null,
 ) {
     val context = LocalContext.current
     //val navController = rememberNavController()
     val navigationItems2 = listOf(
-        Destinations.ActividadUI,
+        Destinations.EventoAmbientalUI,
         Destinations.Pantalla1,
         Destinations.Pantalla2,
         Destinations.Pantalla3
     )
-  /*  val scaffoldState = rememberScaffoldState(
-        drawerState = rememberDrawerState(initialValue =
-        DrawerValue.Closed)
-    )*/
+    /*  val scaffoldState = rememberScaffoldState(
+          drawerState = rememberDrawerState(initialValue =
+          DrawerValue.Closed)
+      )*/
 
     val fabItems = listOf(
         FabItem(
@@ -119,14 +120,14 @@ fun MyApp( navController: NavHostController,
         },
         FabItem(
             Icons.Filled.Favorite,
-            "Add Actvidad"
+            "Add EventoAmbiental"
         ) { onAddClick?.invoke() }
     )
 
     Scaffold(
         bottomBar = {
             BottomAppBar {
-            BottomNavigationBar(navigationItems2, navController = navController)
+                BottomNavigationBar(navigationItems2, navController = navController)
             }
         },
         modifier = Modifier,
@@ -138,7 +139,7 @@ fun MyApp( navController: NavHostController,
                 showLabels = true
             )
         },
-    floatingActionButtonPosition = FabPosition.End,
+        floatingActionButtonPosition = FabPosition.End,
     ) {
         Box(modifier = Modifier.fillMaxSize()){
             LazyColumn(modifier = Modifier
@@ -147,7 +148,7 @@ fun MyApp( navController: NavHostController,
                 //.offset(x = (16).dp, y = (-32).dp),
                 userScrollEnabled= true,
             ){
-                var itemCount = actividades.size
+                var itemCount = eventoambientals.size
                 if (isLoading) itemCount++
                 items(count = itemCount) { index ->
                     var auxIndex = index;
@@ -156,7 +157,7 @@ fun MyApp( navController: NavHostController,
                             return@items LoadingCard()
                         auxIndex--
                     }
-                    val actividad = actividades[auxIndex]
+                    val eventoAmbiental = eventoambientals[auxIndex]
                     Card(
                         shape = RoundedCornerShape(8.dp),
                         elevation = CardDefaults.cardElevation(
@@ -173,7 +174,7 @@ fun MyApp( navController: NavHostController,
                                     //.clip(CircleShape)
                                     .clip(RoundedCornerShape(8.dp)),
                                 painter = rememberImagePainter(
-                                    data = actividad.evaluar,
+                                    data = eventoAmbiental.descripcion,
                                     builder = {
                                         placeholder(R.drawable.bg)
                                         error(R.drawable.bg)
@@ -186,14 +187,15 @@ fun MyApp( navController: NavHostController,
                             Column(
                                 Modifier.weight(1f),
                             ) {
-                                Text("${actividad.nombreActividad} - ${actividad.estado}", fontWeight = FontWeight.Bold)
-                                val datex = LocalDate.parse(actividad.fecha!!, DateTimeFormatter.ISO_DATE)
+                                Text("${eventoAmbiental.titulo} - ${eventoAmbiental.descripcion}", fontWeight = FontWeight.Bold)
+                                val datex = LocalDate.parse(eventoAmbiental.fecha!!, DateTimeFormatter.ISO_DATE)
+
                                 var fecha=formatoFecha?.format(datex)
                                 Text(""+fecha, color =
                                 MaterialTheme.colorScheme.primary)
                             }
 
-                           Spacer()
+                            Spacer()
                             val showDialog = remember { mutableStateOf(false) }
                             IconButton(onClick = {
                                 showDialog.value = true
@@ -204,7 +206,7 @@ fun MyApp( navController: NavHostController,
                                 ConfirmDialog(
                                     message = "Esta seguro de eliminar?",
                                     onConfirm = {
-                                        onDeleteClick?.invoke(actividad)
+                                        onDeleteClick?.invoke(eventoAmbiental)
                                         showDialog.value=false
                                     },
                                     onDimins = {
@@ -216,7 +218,7 @@ fun MyApp( navController: NavHostController,
                             IconButton(onClick = {
                                 Log.i("VERTOKEN", "Holas")
                                 Log.i("VERTOKEN", TokenUtils.TOKEN_CONTENT)
-                                onEditClick?.invoke(actividad)
+                                onEditClick?.invoke(eventoAmbiental)
                             }) {
                                 Icon(
                                     Icons.Filled.Edit,

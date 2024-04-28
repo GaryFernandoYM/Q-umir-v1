@@ -40,6 +40,14 @@ sealed class Destinations(
             return "materialesxForm?matId=$matId"
         }
     }
+
+    object EventoAmbientalUI: Destinations("eventoambientalUI","Adm. EventoAmbiental", Icons.Filled.DateRange)
+
+    object EventoAmbientalForm: Destinations("eventoambientalForm?evtId={evtId}", "Form EventoAmbiental", Icons.Filled.Add){
+        fun passId(evtId:String?):String{
+            return "eventoambientalForm?evtId=$evtId"
+        }
+    }
     object PantallaQR : Destinations("pantallaqr", "Pantalla QR", Icons.Filled.AccountCircle )
 
 }
