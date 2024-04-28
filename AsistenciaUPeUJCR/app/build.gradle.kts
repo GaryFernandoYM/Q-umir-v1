@@ -81,6 +81,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+
     implementation("androidx.compose.material3:material3-window-size-class") //Agregado
     val appcompat_version = "1.6.1"
     implementation("androidx.appcompat:appcompat:$appcompat_version")//Agregado recien
@@ -137,4 +138,7 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
+    implementation ("com.github.mohamad-amin:calendar-jetpack-compose:1.0.0")
+
+
 }
