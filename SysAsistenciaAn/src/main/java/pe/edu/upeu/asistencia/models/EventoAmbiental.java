@@ -10,6 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 /**
@@ -33,13 +35,16 @@ public class EventoAmbiental {
     private String descripcion;
     private String estado;
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @Column(nullable = false)
+    @Basic(optional = false)
+    @Column(name = "fecha", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date fecha;
+    private LocalDate fecha;
 
-    @Column(nullable = false)
+    @JsonFormat(pattern = "HH:mm:ss")
+    @Basic(optional = false)
+    @Column(name = "hora", nullable = false)
     @Temporal(TemporalType.TIME)
-    private Date hora;
+    private LocalTime hora;
 
     private String ubicacion;
 }

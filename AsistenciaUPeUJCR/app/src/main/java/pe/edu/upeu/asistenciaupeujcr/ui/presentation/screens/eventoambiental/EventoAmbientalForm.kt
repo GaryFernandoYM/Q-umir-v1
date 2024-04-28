@@ -30,8 +30,10 @@ import pe.edu.upeu.asistenciaupeujcr.ui.navigation.Destinations
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.components.form.AccionButtonCancel
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.components.form.AccionButtonSuccess
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.components.form.ComboBox
+import pe.edu.upeu.asistenciaupeujcr.ui.presentation.components.form.DatePickerCustom
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.components.form.MyFormKeys
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.components.form.NameTextField
+import pe.edu.upeu.asistenciaupeujcr.ui.presentation.components.form.TimePickerCustom
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.actividad.splitCadena
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.eventoambiental.EventoAmbientalFormViewModel
 
@@ -79,35 +81,7 @@ fun formulario(id:Long,
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
 
-    /*var locationCallback: LocationCallback? = null
-    var fusedLocationClient: FusedLocationProviderClient? = null
-    fusedLocationClient = LocationServices.getFusedLocationProviderClient(
-        context)
-    locationCallback = object : LocationCallback() {
-        override fun onLocationResult(p0: LocationResult) {
-            for (lo in p0.locations) {
-                Log.e("LATLONX", "Lat: ${lo.latitude} Lon: ${lo.longitude}")
-                person.latitud=lo.latitude.toString()
-                person.longitud=lo.longitude.toString()
-            }
-        }
-    }
-    scope.launch{
-        val locationRequest = LocationRequest.create().apply {
-            interval = 10000
-            fastestInterval = 5000
-            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        }
-        fusedLocationClient!!.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
 
-        Log.e("LATLON", "Lat: ${person.latitud} Lon: ${person.longitud}")
-        delay(1500L)
-        if (fusedLocationClient != null) {
-            fusedLocationClient!!.removeLocationUpdates(locationCallback);
-            fusedLocationClient = null;
-        }
-
-    }*/
 
     Scaffold(modifier = Modifier.padding(top = 60.dp, start = 16.dp, end = 16.dp, bottom = 32.dp)){
         BuildEasyForms { easyForm ->
@@ -120,6 +94,11 @@ fun formulario(id:Long,
                     ComboModel("Desactivo","Desactivo"),
                 )
                 ComboBox(easyForm = easyForm, "Estado:", eventoAmbiental?.estado!!, listE)
+                DatePickerCustom(easyForm = easyForm, label = "Fecha", texts = eventoAmbiental?.fecha!!, MyFormKeys.FECHA,"yyyy-MM-dd")
+                TimePickerCustom(easyForm = easyForm, label = "Hora", texts = eventoAmbiental?.hora!!, MyFormKeys.TIME, "HH:mm:ss")
+                NameTextField(easyForms = easyForm, text = eventoAmbiental?.ubicacion!!, "Ubicacion:", MyFormKeys.UBICACION )
+
+
 
 
 
