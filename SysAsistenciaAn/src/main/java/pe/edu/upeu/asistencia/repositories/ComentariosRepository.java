@@ -6,15 +6,11 @@ package pe.edu.upeu.asistencia.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pe.edu.upeu.asistencia.models.EventoAmbiental;
+import pe.edu.upeu.asistencia.models.Comentarios;
 
 import java.util.Optional;
 
-/**
- *
- * @author EP-Ing_Sist.-CALIDAD
- */
 @Repository
-public interface EventoAmbientalRepository extends JpaRepository<EventoAmbiental, Long> {
-    Optional<EventoAmbiental> findByTitulo(String titulo);
+public interface ComentariosRepository extends JpaRepository<Comentarios, Long> {
+    Optional<Comentarios> findByTexto(String texto);
 }
