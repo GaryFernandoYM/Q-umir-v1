@@ -6,11 +6,15 @@ package pe.edu.upeu.asistencia.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pe.edu.upeu.asistencia.models.Comentarios;
+import pe.edu.upeu.asistencia.models.RecompensaAmbiental;
 
 import java.util.Optional;
 
+/**
+ *
+ * @author EP-Ing_Sist.-CALIDAD
+ */
 @Repository
-public interface ComentariosRepository extends JpaRepository<Comentarios, Long> {
-    Optional<Comentarios> findByTexto(String texto);
+public interface RecompensaAmbientalRepository extends JpaRepository<RecompensaAmbiental, Long> {
+    Optional<RecompensaAmbiental> findByPuntos(String puntos);
 }
