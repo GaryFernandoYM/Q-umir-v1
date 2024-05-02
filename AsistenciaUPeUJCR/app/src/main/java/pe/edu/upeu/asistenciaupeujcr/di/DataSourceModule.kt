@@ -10,6 +10,7 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import pe.edu.upeu.asistenciaupeujcr.data.local.DbDataSource
 import pe.edu.upeu.asistenciaupeujcr.data.local.dao.ActividadDao
+import pe.edu.upeu.asistenciaupeujcr.data.local.dao.ComentarioDao
 import pe.edu.upeu.asistenciaupeujcr.data.local.dao.EventoAmbientalDao
 import pe.edu.upeu.asistenciaupeujcr.data.local.dao.MaterialesxDao
 import pe.edu.upeu.asistenciaupeujcr.data.remote.RestActividad
@@ -90,6 +91,11 @@ class DataSourceModule {
     @Provides
     fun eventoambientalDAO(db:DbDataSource):EventoAmbientalDao{
         return db.eventoambientalDao()
+    }
+    @Singleton
+    @Provides
+    fun ComentariolDAO(db:DbDataSource): EventoAmbientalDao {
+        return db.ComentarioDao()
     }
 
 }

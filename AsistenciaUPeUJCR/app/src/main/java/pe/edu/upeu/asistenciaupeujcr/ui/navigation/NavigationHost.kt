@@ -16,6 +16,7 @@ import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.Pantalla4
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.Pantalla5
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.actividad.ActividadForm
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.actividad.ActividadUI
+
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.eventoambiental.EventoAmbientalForm
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.eventoambiental.EventoAmbientalUI
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.login.LoginScreen
@@ -98,11 +99,10 @@ fun NavigationHost(
             EventoAmbientalForm(text = evtId, darkMode = darkMode, navController =navController )
         }
 
-
-
-
-
         composable(Destinations.PantallaQR.route) { BarcodeScanningScreen(navController = navController) }
 
     }
+// Comentario
+       //composable(Destinations.ComentarioslUI)
+
 }

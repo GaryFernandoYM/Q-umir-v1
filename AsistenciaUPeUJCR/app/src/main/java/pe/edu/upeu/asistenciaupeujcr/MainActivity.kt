@@ -150,7 +150,10 @@ fun MainScreen(
         Destinations.ActividadUI,
         Destinations.MaterialesxUI,
         Destinations.EventoAmbientalUI,
+        Destinations.ComentarioUI,
         Destinations.PantallaQR
+
+
     )
     val navigationItems2 = listOf(
         Destinations.Pantalla1,
