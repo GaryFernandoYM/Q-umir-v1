@@ -17,6 +17,7 @@ import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.Pantalla4
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.Pantalla5
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.actividad.ActividadForm
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.actividad.ActividadUI
+
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.eventoambiental.EventoAmbientalForm
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.eventoambiental.EventoAmbientalUI
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.eventoambiental.NoticiaAmbientalForm
@@ -101,6 +102,7 @@ fun NavigationHost(
         }
 //noticis
 
+<<<<<<< HEAD
         composable(Destinations.NoticiaAmbientalUI.route){
             NoticiaAmbientalUI(navegarEditarNoticia= { newText->navController.navigate(Destinations.NoticiaAmbientalForm.passId(newText))}, navController =navController )
         }
@@ -114,7 +116,12 @@ fun NavigationHost(
         }
 
 //qr
+=======
+>>>>>>> dfbebfac7ec5a1523349e80727c3378491a8398e
         composable(Destinations.PantallaQR.route) { BarcodeScanningScreen(navController = navController) }
 
     }
+// Comentario
+       //composable(Destinations.ComentarioslUI)
+
 }

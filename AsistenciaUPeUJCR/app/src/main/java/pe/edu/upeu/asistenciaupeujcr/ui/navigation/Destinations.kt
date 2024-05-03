@@ -57,4 +57,13 @@ sealed class Destinations(
     }
     object PantallaQR : Destinations("pantallaqr", "Pantalla QR", Icons.Filled.AccountCircle )
 
+    //COMENTARIOS
+    object ComentarioUI: Destinations("ComentarioUI","Adm. Comentario", Icons.Filled.DateRange)
+
+    object ComentarioForm: Destinations("ComentarioForm?matId={matId}", "Form Comentario", Icons.Filled.Add){
+        fun passId(matId:String?):String{
+            return "ComentarioForm?matId=$matId"
+        }
+    }
+
 }

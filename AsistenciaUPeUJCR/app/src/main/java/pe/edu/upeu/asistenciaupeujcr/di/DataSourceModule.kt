@@ -10,6 +10,7 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import pe.edu.upeu.asistenciaupeujcr.data.local.DbDataSource
 import pe.edu.upeu.asistenciaupeujcr.data.local.dao.ActividadDao
+import pe.edu.upeu.asistenciaupeujcr.data.local.dao.ComentarioDao
 import pe.edu.upeu.asistenciaupeujcr.data.local.dao.EventoAmbientalDao
 import pe.edu.upeu.asistenciaupeujcr.data.local.dao.MaterialesxDao
 import pe.edu.upeu.asistenciaupeujcr.data.local.dao.NoticiaAmbientalDao
@@ -100,8 +101,13 @@ class DataSourceModule {
     }
     @Singleton
     @Provides
+<<<<<<< HEAD
     fun noticiaAmbientalDao(db: DbDataSource): NoticiaAmbientalDao {
         return db.noticiaAmbientalDao()
+=======
+    fun ComentariolDAO(db:DbDataSource): EventoAmbientalDao {
+        return db.ComentarioDao()
+>>>>>>> dfbebfac7ec5a1523349e80727c3378491a8398e
     }
 
 }
