@@ -10,6 +10,8 @@ import pe.edu.upeu.asistenciaupeujcr.repository.EventoAmbientalRepository
 import pe.edu.upeu.asistenciaupeujcr.repository.EventoAmbientalRepositoryImp
 import pe.edu.upeu.asistenciaupeujcr.repository.MaterialesxRepository
 import pe.edu.upeu.asistenciaupeujcr.repository.MaterialesxRepositoryImp
+import pe.edu.upeu.asistenciaupeujcr.repository.NoticiaAmbientalRepository
+import pe.edu.upeu.asistenciaupeujcr.repository.NoticiaAmbientalRepositoryImp
 import pe.edu.upeu.asistenciaupeujcr.repository.UsuarioRepository
 import pe.edu.upeu.asistenciaupeujcr.repository.UsuarioRepositoryImp
 import javax.inject.Singleton
@@ -30,5 +32,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun eventoambientalRepository(facRepos:EventoAmbientalRepositoryImp):EventoAmbientalRepository
+    @Binds
+    @Singleton
+    abstract fun noticiaAmbientalRepository(repository: NoticiaAmbientalRepositoryImp): NoticiaAmbientalRepository
 
 }

@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.BarcodeScanningScreen
+import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.NoticiaAmbiental.NoticiaAmbientalUI
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.Pantalla1
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.Pantalla2
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.Pantalla3
@@ -18,6 +19,7 @@ import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.actividad.Actividad
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.actividad.ActividadUI
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.eventoambiental.EventoAmbientalForm
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.eventoambiental.EventoAmbientalUI
+import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.eventoambiental.NoticiaAmbientalForm
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.login.LoginScreen
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.materialesx.MaterialesxForm
 import pe.edu.upeu.asistenciaupeujcr.ui.presentation.screens.materialesx.MaterialesxUI
@@ -97,11 +99,21 @@ fun NavigationHost(
             requireNotNull(evtId)
             EventoAmbientalForm(text = evtId, darkMode = darkMode, navController =navController )
         }
+//noticis
 
+        composable(Destinations.NoticiaAmbientalUI.route){
+            NoticiaAmbientalUI(navegarEditarNoticia= { newText->navController.navigate(Destinations.NoticiaAmbientalForm.passId(newText))}, navController =navController )
+        }
 
+        composable(Destinations.NoticiaAmbientalForm.route, arguments = listOf(navArgument("notiId"){
+            defaultValue="notiId"
+        })){
+                navBackStackEntry -> var notiId=navBackStackEntry.arguments?.getString("notiId")
+            requireNotNull(notiId)
+            NoticiaAmbientalForm(text = notiId, darkMode = darkMode, navController =navController )
+        }
 
-
-
+//qr
         composable(Destinations.PantallaQR.route) { BarcodeScanningScreen(navController = navController) }
 
     }

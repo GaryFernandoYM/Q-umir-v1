@@ -48,6 +48,13 @@ sealed class Destinations(
             return "eventoambientalForm?evtId=$evtId"
         }
     }
+    object NoticiaAmbientalUI: Destinations("noticiaambientalUI","Adm. NoticisAmbiental", Icons.Filled.DateRange)
+
+    object NoticiaAmbientalForm: Destinations("noticiaambientalForm?notiId={notiId}", "Form NoticisAmbiental", Icons.Filled.Add){
+        fun passId(notiId:String?):String{
+            return "noticiaambientalForm?notiId=$notiId"
+        }
+    }
     object PantallaQR : Destinations("pantallaqr", "Pantalla QR", Icons.Filled.AccountCircle )
 
 }

@@ -12,9 +12,11 @@ import pe.edu.upeu.asistenciaupeujcr.data.local.DbDataSource
 import pe.edu.upeu.asistenciaupeujcr.data.local.dao.ActividadDao
 import pe.edu.upeu.asistenciaupeujcr.data.local.dao.EventoAmbientalDao
 import pe.edu.upeu.asistenciaupeujcr.data.local.dao.MaterialesxDao
+import pe.edu.upeu.asistenciaupeujcr.data.local.dao.NoticiaAmbientalDao
 import pe.edu.upeu.asistenciaupeujcr.data.remote.RestActividad
 import pe.edu.upeu.asistenciaupeujcr.data.remote.RestEventoAmbiental
 import pe.edu.upeu.asistenciaupeujcr.data.remote.RestMaterialesx
+import pe.edu.upeu.asistenciaupeujcr.data.remote.RestNoticiaAmbiental
 import pe.edu.upeu.asistenciaupeujcr.data.remote.RestUsuario
 import pe.edu.upeu.asistenciaupeujcr.utils.TokenUtils
 import retrofit2.Retrofit
@@ -60,6 +62,11 @@ class DataSourceModule {
     }
     @Singleton
     @Provides
+    fun restNoticia(retrofit: Retrofit):RestNoticiaAmbiental{
+        return retrofit.create(RestNoticiaAmbiental::class.java)
+    }
+    @Singleton
+    @Provides
     fun restMaterialesx(retrofit: Retrofit): RestMaterialesx {
         return retrofit.create(RestMaterialesx::class.java)
     }
@@ -90,6 +97,11 @@ class DataSourceModule {
     @Provides
     fun eventoambientalDAO(db:DbDataSource):EventoAmbientalDao{
         return db.eventoambientalDao()
+    }
+    @Singleton
+    @Provides
+    fun noticiaAmbientalDao(db: DbDataSource): NoticiaAmbientalDao {
+        return db.noticiaAmbientalDao()
     }
 
 }

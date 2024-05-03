@@ -2,6 +2,7 @@
 
 buildscript{
     dependencies{
+
         classpath("com.google.dagger:hilt-android-gradle-plugin:2.47") //cambiado 2.47 old 2.45
     }
 }
